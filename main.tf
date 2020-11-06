@@ -5,6 +5,12 @@ provider "google" {
   region      = "southamerica-east1"
 }
 
+terraform {
+  backend "gcs" {
+    bucket = "tf-ce-harbor-tfstate"
+    credentials = "./creds/serviceaccount.json"
+  }
+}
 
 resource "google_container_cluster" "gke-cluster" {
   name               = "gke-cluster"
